@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     private float VerticalInput;
     [SerializeField] private float Speed;
     private Rigidbody PlayerRb;
+    public GameObject bala;
 
     void FixedUpdate ()
     {
@@ -14,6 +15,14 @@ public class PlayerController : MonoBehaviour
         Vector3 Movement = new Vector3(HorizontalInput, 0, VerticalInput) * Speed * Time.fixedDeltaTime;
         Movement.Normalize();
         PlayerRb.AddForce(Movement, ForceMode.VelocityChange);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(bala, transform.position, Quaternion.identity);
+        }
     }
 
     void Start()
